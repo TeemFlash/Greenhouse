@@ -1,0 +1,17 @@
+{
+  "reference": "dry_soil_0_percent",
+  "samples": [
+    9066,
+    9055,
+    9061,
+    9052,
+    9062,
+    9068,
+    9042,
+    8900
+  ],
+  "mean_raw": 9038,
+  "range_raw": 168,
+  "user_confirmed": "sensor in dry soil",
+  "date": "2026-10-20"
+}

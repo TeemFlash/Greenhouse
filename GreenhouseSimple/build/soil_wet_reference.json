@@ -1,0 +1,17 @@
+{
+  "reference": "wet_soil_100_percent",
+  "samples": [
+    7410,
+    7412,
+    7394,
+    7408,
+    7404,
+    7390,
+    7322,
+    7320
+  ],
+  "mean_raw": 7382,
+  "range_raw": 92,
+  "user_confirmed": "sensor in wet soil",
+  "date": "2026-10-20"
+}

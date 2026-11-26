@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+<title id="title">Greenhouse — теплица, которая смотрит в ответ</title>
+<desc id="desc">Тёмно-зелёная панель с круговой шкалой и красным глазом. Локальное управление светом, наблюдение за почвой и температурой воздуха.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10241e"/><stop offset="1" stop-color="#070f0d"/></linearGradient>
+ <radialGradient id="lens"><stop stop-color="#ffe66a"/><stop offset=".09" stop-color="#ffc83e"/><stop offset=".17" stop-color="#ff6331"/><stop offset=".5" stop-color="#d33221"/><stop offset=".76" stop-color="#641f18"/><stop offset="1" stop-color="#0a1110"/></radialGradient>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#86cfa7" stroke-opacity=".065"/></pattern>
+</defs>
+<rect width="1280" height="520" rx="24" fill="url(#bg)"/>
+<rect width="1280" height="520" rx="24" fill="url(#grid)"/>
+<path d="M42 80V42H80 M1200 42H1238V80 M42 440V478H80 M1200 478H1238V440" fill="none" stroke="#60947b" stroke-width="2"/>
+<g font-family="DejaVu Sans,Arial,sans-serif">
+ <circle cx="78" cy="98" r="5" fill="#a9e6a0"/>
+ <text x="96" y="103" font-size="13" fill="#a9e6a0" letter-spacing="3">A LITTLE ROOM TO GROW</text>
+ <text x="70" y="208" font-size="78" font-weight="700" letter-spacing="-3" fill="#f0f4e8">GREENHOUSE</text>
+ <text x="75" y="258" font-size="24" fill="#c0cfc3">Теплица, которая смотрит в ответ.</text>
+ <path d="M76 297H600" stroke="#385546"/>
+ <text x="76" y="335" font-size="17" fill="#91ab9b">Свет. Почва. Воздух. Всё под рукой.</text>
+ <g font-family="DejaVu Sans Mono,monospace" font-size="12" letter-spacing="1">
+  <rect x="76" y="380" width="115" height="32" rx="16" fill="#1b3429" stroke="#385546"/>
+  <text x="94" y="401" fill="#b8d4bc">ESP8266</text>
+  <rect x="203" y="380" width="146" height="32" rx="16" fill="#1b3429" stroke="#385546"/>
+  <text x="224" y="401" fill="#b8d4bc">240 × 240</text>
+  <rect x="361" y="380" width="162" height="32" rx="16" fill="#1b3429" stroke="#385546"/>
+  <text x="380" y="401" fill="#b8d4bc">LOCAL CONTROL</text>
+ </g>
+</g>
+<g transform="translate(982 255)">
+ <circle r="191" fill="none" stroke="#385546"/>
+ <circle r="177" fill="none" stroke="#81a78a" stroke-opacity=".6" stroke-width="5" stroke-dasharray="1 11.35"/>
+ <circle r="158" fill="#17231e" stroke="#58725e" stroke-width="2"/>
+ <circle r="145" fill="#080e0c"/>
+ <circle r="132" fill="url(#lens)"/>
+ <circle r="78" fill="none" stroke="#e85232" stroke-opacity=".35"/>
+ <circle r="43" fill="none" stroke="#ffab43" stroke-opacity=".45"/>
+ <circle r="14" fill="#ffe975"/>
+ <path d="M-66-112Q0-144 66-112L58-91Q0-115-58-91Z" fill="#f6f4e5" opacity=".24"/>
+ <path d="M0-206V-195 M206 0H195 M0 206V195 M-206 0H-195" stroke="#afcfaa" stroke-width="2"/>
+</g>
+<g font-family="DejaVu Sans Mono,monospace" font-size="11" fill="#789785" letter-spacing="2">
+ <text x="76" y="462">FOUR SCREENS / ONE LIVING CORNER</text>
+ <text x="928" y="474">MEET THE EYE</text>
+</g>
+</svg>
