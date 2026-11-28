@@ -1,193 +1,195 @@
 # Greenhouse
 
-**Теплица, которая смотрит в ответ.** Контроллер мини-теплицы на ESP8266: два вида света, влажность почвы и температура воздуха — на одном круглом дисплее.
+**A greenhouse that looks back.** An ESP8266 mini-greenhouse controller with two lighting modes, soil moisture and air temperature on a single round display.
 
-![Greenhouse: тёмно-зелёная панель и красный глаз на круговой шкале](docs/hero.svg)
+![Greenhouse: an evergreen panel with a red eye and circular dial](docs/hero.svg)
 
 <p align="center">
-  <img alt="Платформа: ESP8266" src="https://img.shields.io/badge/ESP8266-NodeMCU-254d3b?style=flat-square" />
-  <img alt="Дисплей: GC9A01A, 240 на 240" src="https://img.shields.io/badge/GC9A01A-240%C3%97240-254d3b?style=flat-square" />
-  <img alt="Среда: Arduino, C++" src="https://img.shields.io/badge/Arduino-C%2B%2B-254d3b?style=flat-square" />
-  <img alt="Стадия: аппаратный прототип" src="https://img.shields.io/badge/status-hardware_prototype-bb713c?style=flat-square" />
+  <img alt="Platform: ESP8266" src="https://img.shields.io/badge/ESP8266-NodeMCU-254d3b?style=flat-square" />
+  <img alt="Display: GC9A01A, 240 by 240" src="https://img.shields.io/badge/GC9A01A-240%C3%97240-254d3b?style=flat-square" />
+  <img alt="Environment: Arduino, C++" src="https://img.shields.io/badge/Arduino-C%2B%2B-254d3b?style=flat-square" />
+  <img alt="Stage: hardware prototype" src="https://img.shields.io/badge/status-hardware_prototype-bb713c?style=flat-square" />
 </p>
 
 <p align="center">
-  <a href="#интерфейс">Интерфейс</a> ·
-  <a href="#железо">Железо</a> ·
-  <a href="#запуск">Запуск</a> ·
-  <a href="#проверки">Проверки</a> ·
-  <a href="docs/hardware-status.md">Статус устройства</a>
+  <a href="#interface">Interface</a> ·
+  <a href="#hardware">Hardware</a> ·
+  <a href="#getting-started">Getting started</a> ·
+  <a href="#checks">Checks</a> ·
+  <a href="docs/hardware-status.md">Hardware status</a>
 </p>
 
-Проект для небольшого живого уголка: включить тёплый свет, переключиться на УФ, посмотреть показания датчиков. Четыре сенсорные кнопки заменяют меню на телефоне, а каждому действию соответствует отдельный экран.
+Built for a small living corner: turn on warm light, switch to UV, or check the sensors. Four touch buttons provide local control, with a dedicated screen for each function.
 
-**Начать с [GreenhouseSimple](GreenhouseSimple/README_RU.txt)** — это текущая прошивка с круглым интерфейсом. Она работает локально, без Wi-Fi и облака. В репозитории также сохранён ранний вариант с автоматикой; различия описаны [ниже](#две-версии-прошивки).
+**Start with [GreenhouseSimple](GreenhouseSimple/README.md)**, the current firmware with the round interface. It runs locally, without Wi-Fi or a cloud service. An earlier automation prototype is also preserved in this repository; the differences are explained [below](#two-firmware-versions).
 
-## Интерфейс
+## Interface
 
-### 00 / Сначала — взгляд
+### 00 / First, a glance
 
-При включении появляется красный глаз: он плавно переводит взгляд в разные стороны. Затем открывается страница тёплого света. Команды всем нагрузкам при старте выключены.
+At startup, a red eye smoothly looks around before the warm-light page appears. All load commands start OFF.
 
 <p align="center">
-  <img src="GreenhouseSimple/preview/startup_eye.gif" width="280" alt="Анимация заставки: красный глаз переводит взгляд по круглому дисплею" />
+  <img src="GreenhouseSimple/preview/startup_eye.gif" width="280" alt="Startup animation: a red eye looking around the round display" />
 </p>
 
-Это характер устройства: знакомый силуэт объектива, немного научной фантастики и спокойный интерфейс после заставки.
+A familiar lens silhouette, a touch of science fiction, and a quiet interface after the opening animation.
 
-### 01—04 / Один круг, четыре экрана
+### 01-04 / One circle, four screens
 
 <table>
   <tr>
-    <th>01 · Тёплый свет</th>
-    <th>02 · Ультрафиолет</th>
-    <th>03 · Почва и воздух</th>
-    <th>04 · Кулеры</th>
+    <th>01 · Warm light</th>
+    <th>02 · Ultraviolet</th>
+    <th>03 · Soil and air</th>
+    <th>04 · Fans</th>
   </tr>
   <tr>
-    <td align="center"><img src="GreenhouseSimple/preview/warm_on.png" width="210" alt="Круглый экран тёплого света: жёлтая лампочка, ON" /></td>
-    <td align="center"><img src="GreenhouseSimple/preview/uv_on.png" width="210" alt="Круглый экран ультрафиолета: фиолетовая лампочка, ON" /></td>
-    <td align="center"><img src="GreenhouseSimple/preview/soil_on.png" width="210" alt="Круглый экран датчиков: росток, влажность почвы в процентах и температура воздуха в градусах Цельсия" /></td>
-    <td align="center"><img src="GreenhouseSimple/preview/fans_on.png" width="210" alt="Круглый экран кулеров: бирюзовый вентилятор, ON" /></td>
+    <td align="center"><img src="GreenhouseSimple/preview/warm_on.png" width="210" alt="Warm-light screen: a yellow bulb, ON" /></td>
+    <td align="center"><img src="GreenhouseSimple/preview/uv_on.png" width="210" alt="UV screen: a violet bulb, ON" /></td>
+    <td align="center"><img src="GreenhouseSimple/preview/soil_on.png" width="210" alt="Sensor screen: a sprout, soil moisture percentage and air temperature in degrees Celsius" /></td>
+    <td align="center"><img src="GreenhouseSimple/preview/fans_on.png" width="210" alt="Fan screen: a turquoise fan, ON" /></td>
   </tr>
 </table>
 
-*Изображения получены из кода отрисовки прошивки. Значения датчиков — демонстрационные; ON показывает команду контроллера, а не подтверждение работы нагрузки.*
+*These previews are generated from the firmware renderer. Sensor values are illustrative; ON represents the controller command, not confirmation that a load is physically running.*
 
-| Экран | Действие кнопки «выбрать» | Что видно |
+| Screen | Select button action | Display |
 |---|---|---|
-| Тёплый свет | Включить или выключить K2 | Жёлтая лампочка, `ON` / `OFF` |
-| Ультрафиолет | Включить или выключить K1 | Фиолетовая лампочка, `ON` / `OFF` |
-| Почва и воздух | Запросить свежие измерения | Влажность почвы в `%`, температура **воздуха** в `°C` |
-| Кулеры | Переключить команду реле P15 | Бирюзовый вентилятор, `ON` / `OFF` |
+| Warm light | Toggle K2 | Yellow bulb, `ON` / `OFF` |
+| Ultraviolet | Toggle K1 | Violet bulb, `ON` / `OFF` |
+| Soil and air | Request fresh measurements | Soil moisture in `%`, **air** temperature in `°C` |
+| Fans | Toggle the P15 relay command | Turquoise fan, `ON` / `OFF` |
 
-Тёплый свет и УФ включаются по одному. Между ними выдерживается пауза 80 мс с обоими реле OFF. В текущей прошивке нет расписания или таймера выключения света; потеря связи с расширителем сбрасывает команды нагрузкам.
+Warm light and UV are mutually exclusive. Switching between them includes an 80 ms interval with both relays OFF. The current firmware has no lighting schedule or automatic shutoff timer; losing communication with the expander clears load commands.
 
-### Управление без лишних надписей
+### Simple controls
 
-| Кнопка | Действие |
+| Button | Action |
 |---|---|
-| **1 · ←** | Предыдущий экран |
-| **2 · →** | Следующий экран; переход по кругу |
-| **3 · Выбрать** | Действие текущего экрана |
-| **4 · Стоп** | Выключить все нагрузки |
+| **1 · ←** | Previous screen |
+| **2 · →** | Next screen, wrapping around |
+| **3 · Select** | Perform the current screen's action |
+| **4 · Stop** | Turn all load commands OFF |
 
-Удержание не повторяет действие. Кнопка, зажатая при запуске, должна быть отпущена перед первым срабатыванием.
+Holding a button does not repeat its action. A button held during startup must be released before it can trigger an action.
 
-## Железо
+## Hardware
 
-| Компонент | Роль | Подключение |
+| Component | Role | Connection |
 |---|---|---|
-| **NodeMCU ESP8266** | Контроллер | NodeMCU 1.0, ESP-12E |
-| **GC9A01A** | Круглый TFT 240 × 240 | SPI, поворот `3` |
-| **PCF8575** | Сенсорные кнопки и реле | I²C `0x20` |
-| **ADS1115** | Чтение датчика почвы | I²C `0x48`, вход A0 |
-| **HTU21** | Температура воздуха | I²C `0x40` |
-| **K1 / K2** | УФ / тёплый свет | PCF P0 / P1, активный LOW |
-| **Реле кулеров** | Команда вентиляции | PCF P15, активный HIGH |
+| **NodeMCU ESP8266** | Controller | NodeMCU 1.0, ESP-12E |
+| **GC9A01A** | Round 240 × 240 TFT | SPI, rotation `3` |
+| **PCF8575** | Touch buttons and relays | I²C `0x20` |
+| **ADS1115** | Soil sensor acquisition | I²C `0x48`, input A0 |
+| **HTU21** | Air temperature | I²C `0x40` |
+| **K1 / K2** | UV / warm light | PCF P0 / P1, active LOW |
+| **Fan relay** | Ventilation command | PCF P15, active HIGH |
 
-**I²C:** SDA → D2, SCL → D1. **Дисплей:** SCK → D5, MOSI → D7, CS → D8, DC → D3, RST → D4.
+**I²C:** SDA → D2, SCL → D1. **Display:** SCK → D5, MOSI → D7, CS → D8, DC → D3, RST → D4.
 
-> P15 на PCF8575 — **бит 13**, маска `0x2000`. Это не GPIO15 ESP8266. Физическое срабатывание нового реле кулеров пока не подтверждено.
+> PCF8575 P15 is **bit 13**, mask `0x2000`. It is not ESP8266 GPIO15. Physical operation of the new fan relay has not yet been confirmed.
 
-Полная [распиновка](GreenhouseSimple/PINOUT_RU.txt) и [известные особенности сборки](docs/hardware-status.md).
+See the full [pinout](GreenhouseSimple/PINOUT.md) and [known hardware limitations](docs/hardware-status.md).
 
-## Как это работает
+## How it works
 
-- **Измерения без ожидания в цикле.** ADS1115 и HTU21 выполняют преобразования между обработкой кнопок и отрисовкой. Для температуры проверяется CRC.
-- **Калибровка по двум точкам.** Сухой и влажный грунт задают относительную шкалу 0–100%. Это не лабораторное измерение объёмной доли воды. Для другого датчика или грунта нужны свои точки.
-- **Свежесть данных.** Почва старше 2 секунд и температура старше 5 секунд не выдаются за актуальные: экран показывает `--`.
-- **Сохранение настроек.** Калибровка хранится в EEPROM с версией и CRC32. Сохранённые значения имеют приоритет над исходными точками в коде.
-- **Отрисовка полосами.** Буфер 3840 байт вместо полного кадра. Показания обновляются в области 240 × 80 без промежуточного чёрного экрана.
+- **Nonblocking measurements.** ADS1115 and HTU21 conversions run between button handling and rendering. Temperature readings are CRC-checked.
+- **Two-point calibration.** Dry and wet soil define a relative 0-100% scale, not a laboratory measurement of volumetric water content. A different sensor or soil needs its own reference points.
+- **Freshness checks.** Soil readings older than 2 seconds and temperature readings older than 5 seconds are replaced with `--`.
+- **Persistent settings.** Calibration is stored in EEPROM with a version and CRC32. Saved values take priority over the defaults in the source code.
+- **Strip rendering.** A 3,840-byte buffer replaces a full framebuffer. Readings update within a 240 × 80 region without an intermediate black frame.
 
-## Запуск
+## Getting started
 
 ### Arduino IDE
 
-1. Клонировать репозиторий:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/TeemFlash/Greenhouse.git
    cd Greenhouse
    ```
 
-2. В дополнительных URL менеджера плат добавить:
+2. Add this URL under Additional Boards Manager URLs:
 
    ```text
    https://arduino.esp8266.com/stable/package_esp8266com_index.json
    ```
 
-3. Установить **esp8266 by ESP8266 Community 3.1.2** и выбрать **NodeMCU 1.0 (ESP-12E Module)**. CPU — 80 MHz, Flash — 4 MB.
-4. Установить библиотеки **Adafruit GC9A01A**, **Adafruit GFX Library**, **Adafruit BusIO**.
-5. Открыть [`GreenhouseSimple.ino`](GreenhouseSimple/GreenhouseSimple/GreenhouseSimple.ino), сохранив соседние `.h` в той же папке. Выполнить «Проверить» и выбрать порт своей платы для загрузки. Serial Monitor — **115200 бод**.
+3. Install **esp8266 by ESP8266 Community 3.1.2** and select **NodeMCU 1.0 (ESP-12E Module)**. Set CPU to 80 MHz and flash to 4 MB.
+4. Install **Adafruit GC9A01A**, **Adafruit GFX Library**, and **Adafruit BusIO**.
+5. Open [`GreenhouseSimple.ino`](GreenhouseSimple/GreenhouseSimple/GreenhouseSimple.ino), keeping its neighboring `.h` files in the same folder. Run Verify, then select your board's port to upload. Set Serial Monitor to **115200 baud**.
 
-Перед загрузкой сверить [распиновку и ограничения](docs/hardware-status.md). Wire, SPI и EEPROM входят в пакет ESP8266.
+Before uploading, review the [wiring and limitations](docs/hardware-status.md). Wire, SPI and EEPROM are included in the ESP8266 package.
 
 ### Arduino CLI
 
-После установки того же пакета платы и библиотек, из корня репозитория:
+After installing the same board package and libraries, run from the repository root:
 
 ```bash
-arduino-cli compile --warnings all   --fqbn esp8266:esp8266:nodemcuv2   GreenhouseSimple/GreenhouseSimple
+arduino-cli compile --warnings all --fqbn esp8266:esp8266:nodemcuv2 GreenhouseSimple/GreenhouseSimple
 ```
 
-### Калибровка и диагностика
+### Calibration and diagnostics
 
-На странице датчиков выключить нагрузки кнопкой 4. Поместить чувствительную часть датчика в сухой грунт, дождаться стабильного показания и отправить `d` через Serial Monitor. Повторить во влажном грунте командой `w`. Слишком близкие точки отклоняются; старые настройки сохраняются при ошибке.
+On the sensor page, turn all load commands OFF with button 4. Place the sensing section in dry soil, wait for a stable reading, and send `d` through Serial Monitor. Repeat in wet soil with `w`. Points that are too close are rejected; an error preserves the previous settings.
 
-Команда `?` выводит состояние, реальные отсчёты, калибровку и адреса I²C. `e` повторяет заставку. Подробности — в [инструкции](GreenhouseSimple/README_RU.txt).
+Send `?` for status, raw readings, calibration and I²C addresses. Send `e` to replay the eye animation. See the [firmware guide](GreenhouseSimple/README.md) for details.
 
-## Две версии прошивки
+## Two firmware versions
 
-| | **GreenhouseSimple** · текущая | **GreenhouseController** · ранний прототип |
+| | **GreenhouseSimple** · current | **GreenhouseController** · early prototype |
 |---|---|---|
-| Интерфейс | Глаз и четыре круглых экрана | Шесть страниц и веб-панель |
-| Управление | Ручное, локальное | Ручное и автоматическое |
-| Датчики | Почва, температура воздуха | Почва, вода, температура и влажность воздуха |
-| Дополнительно | Калибровка EEPROM | Полив, расписания, SD-журнал, Wi-Fi, SNTP |
-| Схема кулеров | Новое реле P15 | Предыдущая схема драйвера |
+| Interface | Eye and four round screens | Six pages and a web panel |
+| Control | Manual, local | Manual and automatic |
+| Sensors | Soil moisture, air temperature | Soil, water level, air temperature and humidity |
+| Extras | EEPROM calibration | Irrigation, schedules, SD logging, Wi-Fi, SNTP |
+| Fan wiring | New P15 relay | Previous driver circuit |
 
-**Для показанного здесь устройства использовать GreenhouseSimple.** Ранний прототип не перенесён на новое реле P15 и не заявлен как проверенная замена текущей прошивке. Его [инструкция](GreenhouseController/README_RU.txt) сохранена рядом с исходниками.
+**Use GreenhouseSimple for the device shown here.** The early prototype has not been adapted to the new P15 relay and is not a verified replacement for the current firmware. Its [original Russian guide](GreenhouseController/README_RU.txt) remains alongside the source.
 
-## Структура проекта
+## Project layout
 
 ```text
 Greenhouse/
 ├── README.md
-├── docs/                       Обложка и статус устройства
+├── docs/                       Cover artwork and hardware status
 ├── GreenhouseSimple/
-│   ├── GreenhouseSimple/       Текущий Arduino-скетч и модули
-│   ├── preview/                Экраны и анимация из рендера прошивки
-│   ├── tests/                  Управление, кнопки, датчики, калибровка
-│   ├── tools/                  Предпросмотр и USB-диагностика
-│   ├── PINOUT_RU.txt           Распиновка текущей сборки
-│   └── README_RU.txt           Подробная инструкция
-└── GreenhouseController/       Ранний вариант с автоматикой
+│   ├── GreenhouseSimple/       Current Arduino sketch and modules
+│   ├── preview/                Screens and animation from the firmware renderer
+│   ├── tests/                  Controls, buttons, sensors and calibration
+│   ├── tools/                  Preview and USB diagnostics
+│   ├── PINOUT.md               Current assembly pinout
+│   └── README.md               Detailed firmware guide
+└── GreenhouseController/       Earlier automation prototype
 ```
 
-## Проверки
+Original Russian wiring notes, development plans and test logs are preserved as project history. The English guides describe the current firmware and its limitations.
 
-Тесты логики запускаются на компьютере без платы. Для GCC/Clang из корня репозитория:
+## Checks
+
+Logic tests run on a computer without a board. With GCC or Clang, run from the repository root:
 
 ```bash
 for name in control menu calibration; do
-  c++ -std=c++11 -Wall -Wextra -Werror     "GreenhouseSimple/tests/${name}_tests.cpp" -o "/tmp/greenhouse-${name}"
+  c++ -std=c++11 -Wall -Wextra -Werror "GreenhouseSimple/tests/${name}_tests.cpp" -o "/tmp/greenhouse-${name}"
   "/tmp/greenhouse-${name}"
 done
 
-c++ -std=c++11 -Wall -Wextra -Werror -IGreenhouseSimple/tests/stubs   GreenhouseSimple/tests/soil_tests.cpp -o /tmp/greenhouse-soil
+c++ -std=c++11 -Wall -Wextra -Werror -IGreenhouseSimple/tests/stubs GreenhouseSimple/tests/soil_tests.cpp -o /tmp/greenhouse-soil
 /tmp/greenhouse-soil
 
-c++ -std=c++11 -Wall -Wextra -Werror -IGreenhouseSimple/tests/temperature_stubs   GreenhouseSimple/tests/temperature_tests.cpp -o /tmp/greenhouse-temperature
+c++ -std=c++11 -Wall -Wextra -Werror -IGreenhouseSimple/tests/temperature_stubs GreenhouseSimple/tests/temperature_tests.cpp -o /tmp/greenhouse-temperature
 /tmp/greenhouse-temperature
 ```
 
-Проверяются взаимное исключение света, команды реле, обработка кнопок, ошибки датчиков и калибровка. [История испытаний](GreenhouseSimple/VALIDATION.txt) отдельно описывает проверки кода и результаты на плате. USB-скрипты в `tools/` взаимодействуют с настоящим устройством; в обычные тесты выше они не входят.
+These tests cover lighting exclusivity, relay commands, button handling, sensor errors and calibration. The [test history (Russian)](GreenhouseSimple/VALIDATION.txt) distinguishes software checks from results on the board. USB scripts in `tools/` interact with the real device and are not part of the ordinary tests above.
 
-**Проект остаётся аппаратным прототипом.** Вопрос с самопроизвольным отключением света не закрыт; отмечены также особенности загрузки и I²C. Подтверждённые результаты и открытые проблемы собраны в [статусе устройства](docs/hardware-status.md).
+**This project remains a hardware prototype.** Unexpected light shutoff is still unresolved; boot and I²C issues have also been observed. Confirmed results and open issues are collected in the [hardware status](docs/hardware-status.md).
 
 ---
 
-Визуальная история README вдохновлена [ByeQaryz](https://github.com/Garryflop/byeqaryz): от первого экрана к устройству проекта. Обложка сделана для Greenhouse, экраны взяты из собственного кода отрисовки. Условия использования шрифта — в [FONT_LICENSE.txt](GreenhouseSimple/FONT_LICENSE.txt).
+The visual flow of this README is inspired by [ByeQaryz](https://github.com/Garryflop/byeqaryz): from the first screen to the project's inner workings. The cover was made for Greenhouse, and the screen previews come from its own renderer. Font terms are in [FONT_LICENSE.txt](GreenhouseSimple/FONT_LICENSE.txt).
 
-<p align="center"><sub>Четыре экрана. Один живой уголок.</sub></p>
+<p align="center"><sub>Four screens. One living corner.</sub></p>

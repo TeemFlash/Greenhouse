@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
-<title id="title">Greenhouse — теплица, которая смотрит в ответ</title>
-<desc id="desc">Тёмно-зелёная панель с круговой шкалой и красным глазом. Локальное управление светом, наблюдение за почвой и температурой воздуха.</desc>
+<title id="title">Greenhouse - a greenhouse that looks back</title>
+<desc id="desc">An evergreen panel with a circular dial and a red eye. Local lighting control, soil moisture and air temperature monitoring.</desc>
 <defs>
  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10241e"/><stop offset="1" stop-color="#070f0d"/></linearGradient>
  <radialGradient id="lens"><stop stop-color="#ffe66a"/><stop offset=".09" stop-color="#ffc83e"/><stop offset=".17" stop-color="#ff6331"/><stop offset=".5" stop-color="#d33221"/><stop offset=".76" stop-color="#641f18"/><stop offset="1" stop-color="#0a1110"/></radialGradient>
@@ -13,9 +13,9 @@
  <circle cx="78" cy="98" r="5" fill="#a9e6a0"/>
  <text x="96" y="103" font-size="13" fill="#a9e6a0" letter-spacing="3">A LITTLE ROOM TO GROW</text>
  <text x="70" y="208" font-size="78" font-weight="700" letter-spacing="-3" fill="#f0f4e8">GREENHOUSE</text>
- <text x="75" y="258" font-size="24" fill="#c0cfc3">Теплица, которая смотрит в ответ.</text>
+ <text x="75" y="258" font-size="24" fill="#c0cfc3">A greenhouse that looks back.</text>
  <path d="M76 297H600" stroke="#385546"/>
- <text x="76" y="335" font-size="17" fill="#91ab9b">Свет. Почва. Воздух. Всё под рукой.</text>
+ <text x="76" y="335" font-size="17" fill="#91ab9b">Light. Soil. Air. All within reach.</text>
  <g font-family="DejaVu Sans Mono,monospace" font-size="12" letter-spacing="1">
   <rect x="76" y="380" width="115" height="32" rx="16" fill="#1b3429" stroke="#385546"/>
   <text x="94" y="401" fill="#b8d4bc">ESP8266</text>
